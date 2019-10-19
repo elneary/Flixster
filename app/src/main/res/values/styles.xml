@@ -1,4 +1,5 @@
 <resources>
+    <color name="barColor">#000000</color>
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -6,6 +7,23 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:actionBarStyle">@style/MyActionBar</item>
+        <item name="actionBarStyle">@style/MyActionBar</item>
+
     </style>
+        <style name="MyActionBar"
+            parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
+            <item name="android:background">@color/barColor</item>
+            <item name="background">@color/barColor</item>
+        </style>
+
+
+
+
+
+
+
+
+
 
 </resources>
