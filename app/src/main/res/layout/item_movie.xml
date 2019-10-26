@@ -10,13 +10,13 @@
     <ImageView
         android:id="@+id/moviePoster"
         android:layout_width="120dp"
-        android:layout_height="wrap_content"
+        android:layout_height="200dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="0dp"
-        android:paddingTop="5dp"
-        android:paddingBottom="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:paddingTop="0dp"
+        android:paddingBottom="0dp"
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
@@ -28,7 +28,8 @@
         android:layout_toEndOf="@+id/moviePoster"
         android:textSize="24sp"
         tools:text="Joker"
-        android:textColor="#ffffff" />
+        android:textColor="#ffffff"
+        android:transitionName="title"/>
 
     <TextView
         android:id="@+id/tvOverview"

@@ -20,6 +20,7 @@ public class Movie {
     double rating;
     int movieId;
     List<String> genres;
+    String releaseDate;
 
     //Empty constructor needed by the Parceler library
     public Movie () { }
@@ -32,6 +33,7 @@ public class Movie {
         rating = jsonobject.getDouble("vote_average");
         movieId = jsonobject.getInt("id");
         genres = getGenres(jsonobject, genreList);
+        releaseDate = jsonobject.getString("release_date");
     }
 
     private static List<String> getGenres(JSONObject jsonobject, JSONArray genre_id_def){
@@ -99,5 +101,9 @@ public class Movie {
         String result = sb.toString();
         sb.setLength(0);
         return result;
+    }
+
+    public String getReleaseDate() {
+        return releaseDate;
     }
 }

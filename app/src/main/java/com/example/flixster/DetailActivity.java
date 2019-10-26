@@ -30,6 +30,7 @@ public class DetailActivity extends YouTubeBaseActivity {
     RatingBar ratingBar;
     YouTubePlayerView youtubePlayerView;
     TextView genreList;
+    TextView releaseDate;
 
 
 
@@ -44,12 +45,14 @@ public class DetailActivity extends YouTubeBaseActivity {
         ratingBar = findViewById(R.id.ratingBar);
         youtubePlayerView = findViewById(R.id.player);
         genreList = findViewById(R.id.genreList);
+        releaseDate = findViewById(R.id.releaseDate);
 
         final Movie movie  = Parcels.unwrap(getIntent().getParcelableExtra("movie"));
         movieTitle.setText(movie.getTitle());
         movieOverview.setText(movie.getSummary());
         ratingBar.setRating((float) movie.getRating());
         genreList.setText(movie.getGenreString());
+        releaseDate.setText("In theaters " + movie.getReleaseDate());
 
         AsyncHttpClient client = new AsyncHttpClient();
 

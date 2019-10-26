@@ -25,18 +25,20 @@
         android:layout_marginRight="10dp"
         android:textColor="#ffffff"
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"/>
+        android:layout_marginBottom="5dp"
+        android:transitionName="title"/>
 
     <TextView
-        android:id="@+id/genreList"
+        android:id="@+id/releaseDate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="17sp"
-        android:textStyle="italic"
-        tools:text="Horror"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:textColor="#ffffff"/>
+        android:layout_marginBottom="5dp"
+        android:textColor="#F3ECEC"
+        android:textSize="13sp"
+        android:textStyle="italic"
+        tools:text="In theaters 2019" />
 
     <RatingBar
         android:id="@+id/ratingBar"
@@ -53,13 +55,27 @@
         android:layout_marginRight="10dp"
     />
 
+
+    <TextView
+        android:id="@+id/genreList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="15dp"
+        android:textColor="#F3ECEC"
+        android:textSize="15sp"
+        android:textStyle="italic"
+        tools:text="Horror" />
+
+
     <TextView
         android:id="@+id/movieOverview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
-        android:textColor="#ffffff"
+        android:textColor="#F3ECEC"
         tools:text="Test Data Summary. Test Data Summary. Test Data Summary. Test Data Summary. Test Data Summary. Test Data Summary. Test Data Summary. Test Data Summary. Test Data Summary. Test Data Summary. Test Data Summary. " />
 
 
