@@ -24,6 +24,7 @@ public class DetailActivity extends YouTubeBaseActivity {
     private static final String YOUTUBE_API_KEY = "AIzaSyCTAeK8ZTJiOO4GaCbaJVvPts_4wo0qJcY";
     public static final String VIDEOS_URL = "https://api.themoviedb.org/3/movie/%d/videos?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed";
 
+
     TextView movieTitle;
     TextView movieOverview;
     RatingBar ratingBar;
@@ -44,7 +45,7 @@ public class DetailActivity extends YouTubeBaseActivity {
         youtubePlayerView = findViewById(R.id.player);
         genreList = findViewById(R.id.genreList);
 
-        Movie movie  = Parcels.unwrap(getIntent().getParcelableExtra("movie"));
+        final Movie movie  = Parcels.unwrap(getIntent().getParcelableExtra("movie"));
         movieTitle.setText(movie.getTitle());
         movieOverview.setText(movie.getSummary());
         ratingBar.setRating((float) movie.getRating());
@@ -63,7 +64,8 @@ public class DetailActivity extends YouTubeBaseActivity {
                     }
                     String youtubeKey = results.getJSONObject(0).getString("key");
                     Log.d("DetailActivity", youtubeKey);
-                    initializeYoutube(youtubeKey);
+                    initializeYoutube(youtubeKey, movie);
+                    Log.i("DetailActivity", "Rating: " + movie.getRating());
                 } catch (JSONException e) {
                     Log.e("DetailActivity", "Failed to parse JSON");
                 }
@@ -76,12 +78,18 @@ public class DetailActivity extends YouTubeBaseActivity {
 
     }
 
-    private void initializeYoutube(final String youtubeKey){
+    private void initializeYoutube(final String youtubeKey, final Movie movie){
         youtubePlayerView.initialize(YOUTUBE_API_KEY, new YouTubePlayer.OnInitializedListener() {
             @Override
             public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean b) {
                 Log.d("DetailActivity", "onInitializedSuccess");
-                youTubePlayer.cueVideo(youtubeKey);
+                if (movie.getRating() >= 7) {
+                    //Autoplay movies with ratings greater than 7
+                    youTubePlayer.loadVideo(youtubeKey);
+                }
+                else {
+                    youTubePlayer.cueVideo(youtubeKey);
+                }
             }
 
             @Override

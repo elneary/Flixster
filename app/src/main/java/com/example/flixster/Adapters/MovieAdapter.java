@@ -24,7 +24,6 @@ import org.parceler.Parcels;
 import java.util.List;
 
 
-
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> {
 
     Context context;
@@ -87,7 +86,14 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
             }
             tvTitle.setText(movie.getTitle());
             tvOverview.setText(movie.getSummary());
-            Glide.with(context).load(imageURL).placeholder(R.drawable.placeholder).error(R.drawable.placeholder).into(moviePoster);
+            int radius = 50; // corner radius, higher value = more rounded
+            int margin = 0; // crop margin, set to 0 for corners with no crop
+            Glide.with(context)
+                    .load(imageURL)
+                    //.transform(new RoundedCornersTransformation(radius, margin))
+                    .placeholder(R.drawable.placeholder)
+                    .error(R.drawable.placeholder)
+                    .into(moviePoster);
             movieContainer.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
