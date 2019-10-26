@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".DetailActivity">
+    tools:context=".DetailActivity"
+    android:background="#33322e">
 
     <com.google.android.youtube.player.YouTubePlayerView
         android:id="@+id/player"
@@ -16,20 +17,50 @@
         android:id="@+id/movieTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textAlignment="textStart"
         android:textSize="30sp"
-        tools:text="Joker" />
+        android:textStyle="bold"
+        tools:text="Joker"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:textColor="#ffffff"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"/>
+
+    <TextView
+        android:id="@+id/genreList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="17sp"
+        android:textStyle="italic"
+        tools:text="Horror"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:textColor="#ffffff"/>
 
     <RatingBar
         android:id="@+id/ratingBar"
+        style="@style/Widget.AppCompat.RatingBar.Indicator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:isIndicator="true"
         android:numStars="10"
-        android:rating="8.5" />
+        android:rating="8.5"
+        android:stepSize="0.1"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+    />
 
     <TextView
         android:id="@+id/movieOverview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:textColor="#ffffff"
         tools:text="Test Data Summary. Test Data Summary. Test Data Summary. Test Data Summary. Test Data Summary. Test Data Summary. Test Data Summary. Test Data Summary. Test Data Summary. Test Data Summary. Test Data Summary. " />
+
+
 </LinearLayout>

@@ -28,6 +28,8 @@ public class DetailActivity extends YouTubeBaseActivity {
     TextView movieOverview;
     RatingBar ratingBar;
     YouTubePlayerView youtubePlayerView;
+    TextView genreList;
+
 
 
 
@@ -40,13 +42,17 @@ public class DetailActivity extends YouTubeBaseActivity {
         movieOverview = findViewById(R.id.movieOverview);
         ratingBar = findViewById(R.id.ratingBar);
         youtubePlayerView = findViewById(R.id.player);
+        genreList = findViewById(R.id.genreList);
 
         Movie movie  = Parcels.unwrap(getIntent().getParcelableExtra("movie"));
         movieTitle.setText(movie.getTitle());
         movieOverview.setText(movie.getSummary());
         ratingBar.setRating((float) movie.getRating());
+        genreList.setText(movie.getGenreString());
 
         AsyncHttpClient client = new AsyncHttpClient();
+
+
         client.get(String.format(VIDEOS_URL, movie.getMovieId()), new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Headers headers, JSON json) {

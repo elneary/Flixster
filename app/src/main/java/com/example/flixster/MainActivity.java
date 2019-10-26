@@ -24,8 +24,10 @@ import okhttp3.Headers;
 public class MainActivity extends AppCompatActivity {
 
     public static final String NOW_PLAYING_URL = "https://api.themoviedb.org/3/movie/now_playing?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed";
+    public static final String GENRES_URL = "https://api.themoviedb.org/3/genre/movie/list?language=en-US&api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed";
     public static final String TAG = "MainActivity";
     List<Movie> movies;
+    JSONArray genres;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +47,25 @@ public class MainActivity extends AppCompatActivity {
         //Set Layout Manager on the recycler view
         rvMovies.setLayoutManager(new LinearLayoutManager(this));
 
+        //Fetch list of genre id and names
+        client.get(GENRES_URL, new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Headers headers, JSON json) {
+                try {
+                    genres = json.jsonObject.getJSONArray("genres");
+                    movieAdapter.notifyDataSetChanged();
+                    Log.i(TAG, "Genre results " + genres.toString());
+                } catch (JSONException e) {
+                    Log.e(TAG, "Hit JSON exception", e);
+                }
+            }
+            @Override
+            public void onFailure(int statusCode, Headers headers, String response, Throwable throwable) {
+
+            }
+        });
+
+        //Fetch list of movies and populate
         client.get(NOW_PLAYING_URL, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Headers headers, JSON json) {
@@ -53,13 +74,12 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     JSONArray results = jobject.getJSONArray("results");
                     Log.i(TAG, "Results" + results.toString());
-                    movies.addAll(Movie.getMovieList(results));
+                    movies.addAll(Movie.getMovieList(results, genres));
                     //let adapter know data changed
                     movieAdapter.notifyDataSetChanged();
                     Log.i(TAG, "Movies: " + movies.size());
                 } catch (JSONException e) {
                     Log.e(TAG, "Hit JSON exception", e);
-                    e.printStackTrace();
                 }
             }
 
